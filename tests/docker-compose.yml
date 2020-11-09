@@ -1,0 +1,10 @@
+version: '3.2'
+
+services:
+  WWW:
+    image: sgaunet/nginxplorerauth:latest
+    restart: always
+    ports:
+      - "8000:80"     # The HTTP port
+    volumes:
+      - ./example:/usr/share/nginx/html:ro

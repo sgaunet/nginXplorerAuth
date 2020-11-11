@@ -4,6 +4,8 @@ services:
   WWW:
     image: sgaunet/nginxplorerauth:latest
     restart: always
+    environment:
+      - LST_USERS_PASSWORDS=user1:user1 user2:user2
     ports:
       - "8000:80"     # The HTTP port
     volumes:

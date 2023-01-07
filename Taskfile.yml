@@ -1,0 +1,22 @@
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - docker build . -t sgaunet/nginxplorerauth:latest
+
+  tests:
+    deps:
+      - default
+    dir: tests
+    cmds:
+      - venom run testsuite.yml --output-dir="log" --stop-on-failure
+
+  release:
+    deps:
+      - tests
+    cmds:
+      - test -z "$(git status --porcelain)" || exit 1
+      - tag=$(git tag --points-at HEAD) docker build . -t sgaunet/nginxplorerauth:${tag}
+      - tag=$(git tag --points-at HEAD) docker push sgaunet/nginxplorerauth:${tag}

@@ -7,6 +7,6 @@ services:
     environment:
       - LST_USERS_PASSWORDS=user1:user11 user2:user22
     ports:
-      - "8000:80"     # The HTTP port
+      - "8080:80"     # The HTTP port
     volumes:
       - ./example:/usr/share/nginx/html:ro

@@ -1,0 +1,40 @@
+name: Exec testsuite
+
+testcases:
+
+- name: docker-compose down
+  steps:
+  - type: exec
+    script: docker-compose down
+    
+- name: docker-compose up -d
+  steps:
+  - type: exec
+    script: docker-compose up -d
+    # info: "result.systemout is {{.result.systemout}}"
+    assertions:
+    - result.code ShouldEqual 0
+
+- name: curl without id
+  steps:
+  - type: exec
+    script: curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
+    # info: "result.systemout is {{.result.systemout}}"
+    assertions:
+    - result.code ShouldEqual 0
+    - result.systemout ShouldEqual 401
+
+- name: curl without id
+  steps:
+  - type: exec
+    script: curl -s -o /dev/null -w "%{http_code}" http://user1:user11@localhost:8080/test.txt
+    # info: "result.systemout is {{.result.systemout}}"
+    assertions:
+    - result.code ShouldEqual 0
+    - result.systemout ShouldEqual 200
+
+- name: docker-compose down
+  steps:
+  - type: exec
+    script: docker-compose down
+    

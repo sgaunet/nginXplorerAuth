@@ -17,6 +17,4 @@ tasks:
     deps:
       - tests
     cmds:
-      - test -z "$(git status --porcelain)" || exit 1
-      - tag=$(git tag --points-at HEAD) docker build . -t sgaunet/nginxplorerauth:${tag}
-      - tag=$(git tag --points-at HEAD) docker push sgaunet/nginxplorerauth:${tag}
+      - bash release.sh

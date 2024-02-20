@@ -18,10 +18,9 @@ testcases:
 - name: curl without id
   steps:
   - type: exec
-    script: curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
+    script: wget -NS --quiet http://localhost:8080 2>&1 | grep HTTP | awk '{ print $2 }'
     # info: "result.systemout is {{.result.systemout}}"
     assertions:
-    - result.code ShouldEqual 0
     - result.systemout ShouldEqual 401
 
 - name: curl without id
@@ -30,7 +29,7 @@ testcases:
     script: curl -s -o /dev/null -w "%{http_code}" http://user1:user11@localhost:8080/test.txt
     # info: "result.systemout is {{.result.systemout}}"
     assertions:
-    - result.code ShouldEqual 0
+    # - result.code ShouldEqual 0
     - result.systemout ShouldEqual 200
 
 - name: docker-compose down

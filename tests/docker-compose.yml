@@ -3,7 +3,7 @@ version: '3.2'
 services:
   WWW:
     image: sgaunet/nginxplorerauth:latest
-    restart: always
+    # restart: always
     environment:
       - LST_USERS_PASSWORDS=user1:user11 user2:user22
     ports:

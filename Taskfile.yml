@@ -3,10 +3,17 @@ version: '3'
 
 tasks:
   default:
+    desc: "List all tasks"
+    cmds:
+      - task -a
+
+  build:
+    desc: "Build the docker image"
     cmds:
       - docker build . -t sgaunet/nginxplorerauth:latest
 
   tests:
+    desc: "Run the tests"
     deps:
       - default
     dir: tests
@@ -14,6 +21,7 @@ tasks:
       - venom run testsuite.yml --output-dir="log" --stop-on-failure
 
   release:
+    desc: "Release the docker image"
     deps:
       - tests
     cmds:

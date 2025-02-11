@@ -1,6 +1,6 @@
 # NginXplorerAuth
 
-Just a little container to expose a file system with a basic auth
+Just a little container to expose a file system with a basic auth. **This project is now archived**, it can be replaced by: [https://github.com/sgaunet/httpfileserver](https://github.com/sgaunet/httpfileserver)
 
 This project uses:
 
